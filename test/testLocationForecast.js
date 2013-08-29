@@ -41,6 +41,7 @@ describe('Test location forecast function', function() {
       assert(!err);
       assert(weather);
       weather.getFiveDaySummary(function(err, res) {
+        console.log(err, res);
         assert(!err);
         assert(res);
         done();
