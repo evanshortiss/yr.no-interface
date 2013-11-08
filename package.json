@@ -13,10 +13,10 @@
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/evanshortiss/yr.no-weather"
+    "url": "https://github.com/evanshortiss/yr.no-interface"
   },
   "licenses": [{
-    "type": "Apache"
+    "type": "MIT"
   }],
   "engines": {
     "node": ">=0.8"
