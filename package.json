@@ -1,6 +1,6 @@
 {
-  "name": "yr.no-weather",
-  "version": "0.0.1",
+  "name": "yr.no-interface",
+  "version": "0.0.2",
   "description": "Wrapper for the yr.no weather service API. A work in progress.",
   "keywords": ["weather", "api", "yr.no", "met.no", "Meteorologisk", "NRK"],
   "dependencies": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/evanshortiss/yr.no-weather"
   },
   "licenses": [{
-    "type": "MIT"
+    "type": "Apache"
   }],
   "engines": {
     "node": ">=0.8"
