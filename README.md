@@ -47,5 +47,5 @@ var yrno = require('yr.no-intrface'),
 	LOC_VER = 1.9;
 
 
-yrno.locationforecast(dublin, LOC_VER);
+yrno.locationforecast(dublin, LOC_VER).pipe(fs.createWriteStream('./res.xml'));
 ```
