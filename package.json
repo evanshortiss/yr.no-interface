@@ -1,13 +1,10 @@
 {
   "name": "yr.no-interface",
   "version": "0.1.0",
-  "description": "Wrapper for the yr.no weather service API. A work in progress.",
+  "description": "Node.js wrapper for the yr.no weather service API.",
   "keywords": ["weather", "api", "yr.no", "met.no", "Meteorologisk", "NRK"],
   "dependencies": {
-    "async": "0.2.9",
-    "request": "2.25.0",
-    "moment": "2.1.0",
-    "xml2js": "0.2.8"
+    "request": "2.25.0"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
