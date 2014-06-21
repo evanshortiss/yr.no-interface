@@ -43,10 +43,6 @@ describe('yr.no-interface', function() {
     });
   });
 
-  it('Should throw an error', function (done) {
-    api.locationforecast(VER.toString(), function ());
-  });
-
   it('Should pipe response to file', function (done) {
     var s = fs.createWriteStream(FILENAME);
     s.on('close', function () {
