@@ -17,7 +17,7 @@ Each request must specify the version as the API requires this.
 #### Simple Example
 
 ```javascript
-var yrno = require('yr.no-intrface'),
+var yrno = require('yr.no-interface'),
 	dublin = {
 		lat: 53.3478,
 		lon: 6.2597
@@ -38,7 +38,7 @@ yrno.locationforecast(dublin, LOC_VER, function (err, xml) {
 #### Streaming Example
 
 ```javascript
-var yrno = require('yr.no-intrface'),
+var yrno = require('yr.no-interface'),
 	fs = require('fs'),
 	dublin = {
 		lat: 53.3478,
