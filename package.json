@@ -1,26 +1,62 @@
 {
   "name": "yr.no-interface",
-  "version": "0.1.1",
-  "description": "Node.js wrapper for the yr.no weather service API.",
-  "keywords": ["weather", "api", "yr.no", "met.no", "Meteorologisk", "NRK"],
+  "version": "1.0.0",
+  "description": "HTTP wrapper for the yr.no/api.met.no API with support for streams",
+  "scripts": {
+    "test": "npm run lint && npm run unit && npm run coverage",
+    "lint": "npm run eslint && npm run linelint",
+    "eslint": "eslint index.js test/*.js",
+    "linelint": "linelint -l 120 index.js test/*.js",
+    "unit": "NODE_PATH=. mocha test/",
+    "coveralls": "npm run coverage && cat coverage/lcov.info | coveralls",
+    "coverage": "NODE_PATH=. nyc mocha test/ && nyc report --reporter=lcov"
+  },
+  "keywords": [
+    "yr.no",
+    "api",
+    "met",
+    "weather",
+    "Meteorologisk",
+    "NRK",
+    "yr",
+    "no",
+    "met.no",
+    "api.met.no",
+    "forecast"
+  ],
   "dependencies": {
-    "request": "2.25.0"
+    "debug": "~2.6.5",
+    "request": "~2.25.0",
+    "verror": "~1.9.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-lintspaces": "^0.5.1",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-column-lint": "~0.2.0",
-    "mocha": "~1.20.1",
-    "grunt-mocha-istanbul": "~1.4.1"
+    "bluebird": "~3.5.0",
+    "chai": "~3.5.0",
+    "chai-truthy": "~1.0.0",
+    "coveralls": "~2.13.0",
+    "eslint": "~3.19.0",
+    "linelint": "~1.0.1",
+    "mocha": "~3.2.0",
+    "nyc": "~10.2.0",
+    "proxyquire": "~1.7.11",
+    "sinon": "~2.1.0"
   },
   "author": "Evan Shortiss",
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/evanshortiss/yr.no-interface"
+    "url": "git+https://github.com/evanshortiss/yr.no-interface.git"
   },
   "engines": {
-    "node": ">=0.8"
-  }
+    "node": ">=4.4.2"
+  },
+  "bugs": {
+    "url": "https://github.com/evanshortiss/yr.no-interface/issues"
+  },
+  "homepage": "https://github.com/evanshortiss/yr.no-interface#readme",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "license": "MIT"
 }

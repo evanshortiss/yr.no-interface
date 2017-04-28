@@ -1,61 +1,136 @@
-var assert = require('assert')
-  , path = require('path')
-  , api = require('../index.js')
-  , fs = require('fs');
+'use strict';
 
-var FILENAME = path.join(__dirname, './r-e-s.txt');
-var VER = 1.9;
-var DUBLIN = {
-  lat: 53.3478,
-  lon: 6.2597
-};
+const chai = require('chai');
+const expect = chai.expect;
+const proxyquire = require('proxyquire').noCallThru().noPreserveCache();
+const sinon = require('sinon');
+const fs = require('fs');
 
-before(function (done) {
-  fs.unlink(FILENAME, function () {
-    done();
-  });
-});
-
-after(function (done) {
-  fs.unlink(FILENAME, function () {
-    done();
-  });
-});
+chai.use(require('chai-truthy'));
 
 describe('yr.no-interface', function() {
-  this.timeout(10000);
+  let mod, request, dublin, dublinxml;
 
-  it('Should return response from API', function (done) {
-    api.locationforecast(DUBLIN, VER, function(err, weather) {
-      assert(!err);
-      assert.notEqual(weather, '');
-      assert.notEqual(weather.indexOf('weatherdata'), -1);
+  beforeEach(() => {
+    dublinxml = fs.readFileSync('fixtures/weather-dublin.xml', 'utf-8');
+
+    dublin = {
+      lat: 53.3478,
+      lon: 6.2597
+    };
+
+    request = sinon.stub();
+
+    mod = proxyquire('../index.js', {
+      './lib/api-request': request
+    });
+  });
+
+  it('should return an API object with bound functions', () => {
+    const instance = mod({});
+
+    expect(instance).to.be.an('object');
+    expect(instance.locationforecast).to.be.a('function');
+  });
+
+  it('should return error to callback if "version" is missing', (done) => {
+    const instance = mod({});
+
+    instance.locationforecast({
+      query: dublin
+    }, (err) => {
+      expect(err).to.be.truthy();
+      expect(err.toString()).to.contain('params.version is a required config');
+
       done();
     });
   });
 
-  it('Should work without params', function (done) {
-    api.forestfireindex(1.1, function(err, weather) {
-      assert(!err);
-      assert.notEqual(weather, '');
-      assert.notEqual(weather.indexOf('weatherdata'), -1);
-      done();
-    });
-  });
+  it('should throw error "version" is missing and no callback supplied', () => {
+    const instance = mod({});
 
-  it('Should pipe response to file', function (done) {
-    var s = fs.createWriteStream(FILENAME);
-    s.on('close', function () {
-      var weather = fs.readFileSync(FILENAME, {
-        encoding: 'utf8'
+    expect(() => {
+      instance.locationforecast({
+        query: dublin
       });
+    }).to.throw();
+  });
 
-      assert.notEqual(weather, '');
-      assert.notEqual(weather.indexOf('weatherdata'), -1);
+  it('should use default request params if none are passed', (done) => {
+    const instance = mod({});
+
+    request.yields(null, dublinxml);
+
+    instance.locationforecast({
+      version: '1.9',
+      query: dublin
+    }, (err, weather) => {
+      expect(err).to.be.falsy();
+      expect(weather).to.be.a('string');
+      expect(weather).to.equal(dublinxml);
+
+      const args = request.getCall(0).args[0];
+
+      expect(args.url).to.equal('http://api.yr.no/weatherapi/locationforecast/1.9');
+      expect(args.qs).to.equal(dublin);
+      expect(args.timeout).to.equal(60000);
 
       done();
     });
+  });
 
-    api.locationforecast(DUBLIN, VER).pipe(s);
-  })
-})
+  it('should use custom request params passed', (done) => {
+    const instance = mod({});
+    const customTimeout = 1000;
+
+    request.yields(null, dublinxml);
+
+    instance.locationforecast({
+      version: '1.9',
+      query: dublin,
+      request: {
+        timeout: customTimeout
+      }
+    }, (err, weather) => {
+      expect(err).to.be.falsy();
+      expect(weather).to.be.a('string');
+      expect(weather).to.equal(dublinxml);
+
+      const args = request.getCall(0).args[0];
+
+      expect(args.url).to.equal('http://api.yr.no/weatherapi/locationforecast/1.9');
+      expect(args.qs).to.equal(dublin);
+      expect(args.timeout).to.equal(customTimeout);
+
+      done();
+    });
+  });
+
+  it('should use request params passed in initial config', (done) => {
+    const customTimeout = 1050;
+    const instance = mod({
+      request: {
+        timeout: customTimeout
+      }
+    });
+
+    request.yields(null, dublinxml);
+
+    instance.locationforecast({
+      version: '1.9',
+      query: dublin
+    }, (err, weather) => {
+      expect(err).to.be.falsy();
+      expect(weather).to.be.a('string');
+      expect(weather).to.equal(dublinxml);
+
+      const args = request.getCall(0).args[0];
+
+      expect(args.url).to.equal('http://api.yr.no/weatherapi/locationforecast/1.9');
+      expect(args.qs).to.equal(dublin);
+      expect(args.timeout).to.equal(customTimeout);
+
+      done();
+    });
+  });
+});
