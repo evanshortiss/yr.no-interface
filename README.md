@@ -153,31 +153,44 @@ Each request must specify `params.version` as the met.no API requires this.
 * geosatellite
 * gribfiles
 * icemap
+* lightning
 * locationforecast
-* locationforecastlts
+* locationforecastLTS
+* metalerts
 * metgm
 * mountaineasterobservations
+* nowcast
 * oceanforecast
 * polarsatellite
 * probabilityforecast
 * radar
-* seaapproachforecast
-* seasonforecast
+* radarlightning
+* sigmets
+* spotwind
 * subjectiveforecast
 * sunrise
+* tafmetar
 * temperatureverification
 * textforecast
 * textlocation
 * tidalwater
-* trondheimsleia
 * turbulence
 * uvforecast
-* weatherformetnosite
+* upperwindweather
+* verticalprofile
 * weathericon
-* windforecast
+
+
+## Contributors
+
+* @ktrance
+* @clux
+* @Oisann
 
 
 ## CHANGELOG
+
+* 1.1.0 - Updated API endpoints to match api.met.no - thanks @ktrance.
 
 * 1.0.1 - Patch for security vulnerability in `request` through `qs` module.
 
