@@ -1,6 +1,6 @@
 {
   "name": "yr.no-interface",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "HTTP wrapper for the yr.no/api.met.no API with support for streams",
   "scripts": {
     "test": "npm run lint && npm run unit && npm run coverage",
@@ -25,8 +25,8 @@
     "forecast"
   ],
   "dependencies": {
-    "debug": "~2.6.5",
-    "request": "~2.25.0",
+    "debug": "~2.6.8",
+    "request": "~2.81.0",
     "verror": "~1.9.0"
   },
   "devDependencies": {

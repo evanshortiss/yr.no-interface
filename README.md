@@ -175,3 +175,10 @@ Each request must specify `params.version` as the met.no API requires this.
 * weatherformetnosite
 * weathericon
 * windforecast
+
+
+## CHANGELOG
+
+* 1.0.1 - Patch for security vulnerability in `request` through `qs` module.
+
+* 1.0.0 - Initial stable release.
