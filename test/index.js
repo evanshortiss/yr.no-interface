@@ -71,7 +71,7 @@ describe('met.no-interface', function() {
 
       const args = request.getCall(0).args[0];
 
-      expect(args.url).to.equal('http://api.met.no/weatherapi/locationforecast/1.9');
+      expect(args.url).to.equal('https://api.met.no/weatherapi/locationforecast/1.9');
       expect(args.qs).to.equal(dublin);
       expect(args.timeout).to.equal(60000);
 
@@ -98,7 +98,7 @@ describe('met.no-interface', function() {
 
       const args = request.getCall(0).args[0];
 
-      expect(args.url).to.equal('http://api.met.no/weatherapi/locationforecast/1.9');
+      expect(args.url).to.equal('https://api.met.no/weatherapi/locationforecast/1.9');
       expect(args.qs).to.equal(dublin);
       expect(args.timeout).to.equal(customTimeout);
 
@@ -126,7 +126,7 @@ describe('met.no-interface', function() {
 
       const args = request.getCall(0).args[0];
 
-      expect(args.url).to.equal('http://api.met.no/weatherapi/locationforecast/1.9');
+      expect(args.url).to.equal('https://api.met.no/weatherapi/locationforecast/1.9');
       expect(args.qs).to.equal(dublin);
       expect(args.timeout).to.equal(customTimeout);
 

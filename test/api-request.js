@@ -14,7 +14,7 @@ describe('api-request', () => {
     xml = '<xml>test xml string</xml>';
 
     args = {
-      url: 'http://api.met.no',
+      url: 'https://api.met.no',
       qs: {
         lat: 34.37,
         lon: 5.63
