@@ -44,7 +44,7 @@ describe('api-request', () => {
 
     mod(args, (err) => {
       expect(request.called).to.be.truthy();
-      expect(err.toString()).to.contain('request to yr.no encountered an error: ETIMEDOUT');
+      expect(err.toString()).to.contain('request to met.no encountered an error: ETIMEDOUT');
       done();
     });
   });
@@ -77,7 +77,7 @@ describe('api-request', () => {
     mod(args, (err) => {
       expect(request.called).to.be.truthy();
       expect(err).to.be.truthy();
-      expect(err.toString()).to.contain('yr.no API call failed. received 500 status');
+      expect(err.toString()).to.contain('met.no API call failed. received 500 status');
       expect(err.toString()).to.contain('oh noes');
       done();
     });

@@ -8,7 +8,7 @@ const fs = require('fs');
 
 chai.use(require('chai-truthy'));
 
-describe('yr.no-interface', function() {
+describe('met.no-interface', function() {
   let mod, request, dublin, dublinxml;
 
   beforeEach(() => {
@@ -71,7 +71,7 @@ describe('yr.no-interface', function() {
 
       const args = request.getCall(0).args[0];
 
-      expect(args.url).to.equal('http://api.yr.no/weatherapi/locationforecast/1.9');
+      expect(args.url).to.equal('http://api.met.no/weatherapi/locationforecast/1.9');
       expect(args.qs).to.equal(dublin);
       expect(args.timeout).to.equal(60000);
 
@@ -98,7 +98,7 @@ describe('yr.no-interface', function() {
 
       const args = request.getCall(0).args[0];
 
-      expect(args.url).to.equal('http://api.yr.no/weatherapi/locationforecast/1.9');
+      expect(args.url).to.equal('http://api.met.no/weatherapi/locationforecast/1.9');
       expect(args.qs).to.equal(dublin);
       expect(args.timeout).to.equal(customTimeout);
 
@@ -126,7 +126,7 @@ describe('yr.no-interface', function() {
 
       const args = request.getCall(0).args[0];
 
-      expect(args.url).to.equal('http://api.yr.no/weatherapi/locationforecast/1.9');
+      expect(args.url).to.equal('http://api.met.no/weatherapi/locationforecast/1.9');
       expect(args.qs).to.equal(dublin);
       expect(args.timeout).to.equal(customTimeout);
 
