@@ -5,7 +5,7 @@ const log = require('debug')(require('./package.json').name);
 const performYrNoApiRequest = require('./lib/api-request');
 const endpoints = require('./lib/endpoints');
 
-const HOST = 'http://api.yr.no';
+const HOST = 'https://api.met.no';
 const PATH = '/weatherapi';
 
 
