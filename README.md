@@ -190,6 +190,8 @@ Each request must specify `params.version` as the met.no API requires this.
 
 ## CHANGELOG
 
+* 1.2.0 - Updated to use https://api.met.no instead of the deprecated http://api.yr.no - thanks @antonmarsden
+
 * 1.1.0 - Updated API endpoints to match api.met.no - thanks @ktrance.
 
 * 1.0.1 - Patch for security vulnerability in `request` through `qs` module.
